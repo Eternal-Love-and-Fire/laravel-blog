@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-class Post extends Model
+class Post
 {
-    use HasFactory;
+    // use HasFactory;
 
     public function __construct(public $title, public $excerpt, public $date, public $body, public $slug, public $id)
     {
@@ -25,6 +25,7 @@ class Post extends Model
     public static function allPostsFiles()
     {
         return cache()->rememberForever('posts.all', function () {
+            return "asdasd";
             return collect(File::files(resource_path('posts')))
                 ->map(function ($file) {
                     return YamlFrontMatter::parseFile($file);
